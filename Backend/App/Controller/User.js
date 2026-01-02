@@ -47,20 +47,22 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     if (!email || !password) {
       return res.status(400).json({
-        message: "Enter all Field",
+        message: "Enter all fields",
       });
     }
 
     const checkuser = await User.findOne({ email });
     if (!checkuser) {
-      res.status(400).json({
-        message: "user Not found",
+      return res.status(400).json({
+        message: "User not found",
       });
     }
 
-    const ismatch = await bcrypt.compare(password, user.password);
+   
+    const ismatch = await bcrypt.compare(password, checkuser.password);
 
     if (!ismatch) {
       return res.status(400).json({
@@ -68,18 +70,19 @@ const login = async (req, res) => {
       });
     }
 
+   
     const token = jwt.sign(
-      { id: user._id, role: user.role },
+      { id: checkuser._id, role: checkuser.role },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
 
-    res.status(200).json({
-      message: "user Login ",
+    return res.status(200).json({
+      message: "User login successful",
       token,
     });
   } catch (err) {
-    console.error("Login Error ", err);
+    console.error("Login Error", err);
 
     return res.status(500).json({
       message: "Internal Server Error",
@@ -87,5 +90,6 @@ const login = async (req, res) => {
     });
   }
 };
+
 
 export { register, login };

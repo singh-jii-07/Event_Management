@@ -1,6 +1,6 @@
 import express from "express";
 import upload from "../Middleware/upload.js";
-import { register } from "../Controller/User.js";
+import { login, register } from "../Controller/User.js";
 
 const userRoute = express.Router();
 
@@ -9,5 +9,9 @@ userRoute.post(
   // upload.single("profilePhoto"),
   register
 );
+
+userRoute.post (
+  "/login",login
+)
 
 export default userRoute;
