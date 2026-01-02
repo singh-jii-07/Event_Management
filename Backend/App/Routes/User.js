@@ -6,7 +6,7 @@ const userRoute = express.Router();
 
 userRoute.post(
   "/register",
-  upload.single("profilePhoto"),
+  // upload.single("profilePhoto"),
   register
 );
 
