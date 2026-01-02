@@ -19,9 +19,9 @@ const userSchema = new mongoose.Schema({
     enum: ["user", "admin"],
     default: "user",
   },
-  profilePhoto: {
-  type: String,
-}
+//   profilePhoto: {
+//   type: String,
+// }
 
 },{ timestamps: true });
 
