@@ -91,5 +91,17 @@ const login = async (req, res) => {
   }
 };
 
+const logout= async (req, res) =>{
+   try {
+    return res.status(200).json({
+      message: "Logout successful",
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Logout failed",
+    });
+  }
+};
 
-export { register, login };
+
+export { register, login,logout };
