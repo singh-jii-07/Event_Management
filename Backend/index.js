@@ -1,10 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-dotenv.config(); // 👈 very important
 import cors from "cors";
 import userRoute from "./App/Routes/User.js";
 
+dotenv.config(); 
 
 const app = express();
 

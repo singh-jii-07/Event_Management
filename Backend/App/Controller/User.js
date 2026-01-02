@@ -1,9 +1,9 @@
 import User from "../Model/User.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken"
 const register = async (req, res) => {
   try {
-    console.log("BODY 👉", req.body);
-    console.log("FILE 👉", req.file);
+    
     const { name, password, email } = req.body;
 
     if (!name || !password || !email) {
