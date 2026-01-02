@@ -1,9 +1,8 @@
 import User from "../Model/User.js";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 const register = async (req, res) => {
   try {
-    
     const { name, password, email } = req.body;
 
     if (!name || !password || !email) {
@@ -61,7 +60,6 @@ const login = async (req, res) => {
       });
     }
 
-   
     const ismatch = await bcrypt.compare(password, checkuser.password);
 
     if (!ismatch) {
@@ -70,7 +68,6 @@ const login = async (req, res) => {
       });
     }
 
-   
     const token = jwt.sign(
       { id: checkuser._id, role: checkuser.role },
       process.env.JWT_SECRET,
@@ -91,8 +88,8 @@ const login = async (req, res) => {
   }
 };
 
-const logout= async (req, res) =>{
-   try {
+const logout = async (req, res) => {
+  try {
     return res.status(200).json({
       message: "Logout successful",
     });
@@ -103,5 +100,24 @@ const logout= async (req, res) =>{
   }
 };
 
+const profile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
 
-export { register, login,logout };
+    return res.status(200).json({
+      message: "User profile fetched",
+      user,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
+export { register, login, logout , profile };
