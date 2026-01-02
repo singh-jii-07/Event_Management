@@ -1,6 +1,6 @@
 import express from "express";
-import upload from "../Middleware/upload.js";
-import { login, register } from "../Controller/User.js";
+// import upload from "../Middleware/upload.js";
+import { login, logout, register } from "../Controller/User.js";
 
 const userRoute = express.Router();
 
@@ -13,5 +13,7 @@ userRoute.post(
 userRoute.post (
   "/login",login
 )
+
+userRoute.post("/logout",logout)
 
 export default userRoute;
