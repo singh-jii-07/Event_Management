@@ -56,6 +56,7 @@ const deleteBooking = async (req, res) =>{
       return res.status(404).json({ message: "Booking not found" });
     }
    booking.status = "cancelled";
+  
     await booking.save();
 
     res.status(200).json({
