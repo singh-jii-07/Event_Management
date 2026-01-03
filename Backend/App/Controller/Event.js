@@ -72,33 +72,30 @@ const deleteEvent = async (req, res) => {
 };
 
 const editEvent =async (req, res) =>{
-  try{
-    const event = Event.findById(req.body.params);
-    if (!event){
-       return res.status(404).json({ message: "Event not found" });
+ try {
+    const event = await Event.findById(req.params.id);
+
+    if (!event) {
+      return res.status(404).json({ message: "Event not found" });
     }
-  event.title = req.body.title || event.title;
+
+    event.title = req.body.title || event.title;
     event.description = req.body.description || event.description;
     event.date = req.body.date || event.date;
     event.location = req.body.location || event.location;
-    event.date =req.body.date || event.date
+    event.time =req.body.time || event.time
 
-    const UpdateEvent= await event.save()
+    const updatedEvent = await event.save();
 
     res.status(200).json({
-      message:"Event Update",
-      UpdateEvent
-    })
-  }
-  catch (err) {
-    console.error("EVENT EDIT ERROR ", err);
-
-    return res.status(500).json({
-      message: "Failed to delete event",
-      error: err.message, 
+      message: "Event updated successfully",
+      updatedEvent,
     });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
-}
+};
+
 
 
 export { create, getevent, deleteEvent, editEvent };
