@@ -68,5 +68,16 @@ const deleteBooking = async (req, res) =>{
 
   }
 
+  const getMyBookings = async (req, res) => {
+  try {
+    const bookings = await Booking.find({ user: req.user.id })
+      .populate("event");
 
-export {createBookinng,getbook,deleteBooking}
+    res.status(200).json(bookings);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
+export {createBookinng,getbook,deleteBooking,getMyBookings}
