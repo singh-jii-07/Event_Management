@@ -36,7 +36,7 @@ catch (error) {
 
 const getevent =async (req, res )=>{
   try{
-    const event = await Event.find().sort({createAt:-1})
+    const event = await Event.find()
     res.status(200).json({
       message:"All Event",
       event
