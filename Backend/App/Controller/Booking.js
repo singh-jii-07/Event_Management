@@ -4,7 +4,7 @@ const createBookinng =async (req,res)=>{
     try{
         const {eventid}= req.body
         const  userid= req.user.id
-        if (!eventId) {
+        if (!eventid) {
       return res.status(400).json({ message: "Event ID required" });
     }
 
@@ -31,4 +31,21 @@ const createBookinng =async (req,res)=>{
     }
 }
 
-export {createBookinng}
+// const getbook =async (req, res)=>{
+//   try{
+//   const event =  await Event.find()
+//   res.status(200).json({
+//     message:"All Event",
+//     event
+//   })
+//   }
+//    catch(err){
+//         res.status(500).json({
+//             message:"internal server Error",
+//             error: err.message,
+//         })
+    
+//     }
+// }
+
+export {createBookinng,getbook}
