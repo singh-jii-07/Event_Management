@@ -8,7 +8,7 @@ const createBookinng =async (req,res)=>{
       return res.status(400).json({ message: "Event ID required" });
     }
 
-    const event = await Event.findById(eventId);
+    const event = await Event.findById(eventid);
     if (!event) {
       return res.status(404).json({ message: "Event not found" });
     }
