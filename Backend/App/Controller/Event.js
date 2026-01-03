@@ -60,7 +60,8 @@ const deleteEvent = async (req, res) => {
       message: "Event deleted successfully",
     });
 
-  } catch (err) {
+  }
+   catch (err) {
     console.error("EVENT DELETE ERROR ", err);
 
     return res.status(500).json({
@@ -70,5 +71,34 @@ const deleteEvent = async (req, res) => {
   }
 };
 
+const editEvent =async (req, res) =>{
+  try{
+    const event = Event.findById(req.body.params);
+    if (!event){
+       return res.status(404).json({ message: "Event not found" });
+    }
+  event.title = req.body.title || event.title;
+    event.description = req.body.description || event.description;
+    event.date = req.body.date || event.date;
+    event.location = req.body.location || event.location;
+    event.date =req.body.date || event.date
 
-export { create, getevent, deleteEvent };
+    const UpdateEvent= await event.save()
+
+    res.status(200).json({
+      message:"Event Update",
+      UpdateEvent
+    })
+  }
+  catch (err) {
+    console.error("EVENT EDIT ERROR ", err);
+
+    return res.status(500).json({
+      message: "Failed to delete event",
+      error: err.message, 
+    });
+  }
+}
+
+
+export { create, getevent, deleteEvent, editEvent };
