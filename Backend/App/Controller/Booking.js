@@ -31,21 +31,21 @@ const createBookinng =async (req,res)=>{
     }
 }
 
-// const getbook =async (req, res)=>{
-//   try{
-//   const event =  await Event.find()
-//   res.status(200).json({
-//     message:"All Event",
-//     event
-//   })
-//   }
-//    catch(err){
-//         res.status(500).json({
-//             message:"internal server Error",
-//             error: err.message,
-//         })
+const getbook =async (req, res)=>{
+  try{
+  const event =  await Event.find()
+  res.status(200).json({
+    message:"All Event",
+    event
+  })
+  }
+   catch(err){
+        res.status(500).json({
+            message:"internal server Error",
+            error: err.message,
+        })
     
-//     }
-// }
+    }
+}
 
 export {createBookinng,getbook}
