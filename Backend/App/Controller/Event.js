@@ -34,4 +34,20 @@ catch (error) {
   }
 };
 
-export {create}
+const getevent =async (req, res )=>{
+  try{
+    const event = await Event.find().sort({createAt:-1})
+    res.status(200).json({
+      message:"All Event",
+      event
+    })
+  }
+  catch (error) {
+    console.error("EVENT GET ERROR ", error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+    });
+  }
+}
+
+export {create,getevent}
