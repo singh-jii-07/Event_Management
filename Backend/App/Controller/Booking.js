@@ -33,9 +33,9 @@ const createBookinng =async (req,res)=>{
 
 const getbook =async (req, res)=>{
   try{
-  const event =  await Event.find()
+  const event =  await Booking.find()
   res.status(200).json({
-    message:"All Event",
+    message:"All Booking",
     event
   })
   }
