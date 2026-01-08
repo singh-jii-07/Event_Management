@@ -18,7 +18,7 @@ function Signup() {
       console.log(ref);
       setData({ name: "", email: "", password: "" });
     } catch (err) {
-      console.log("Error 👉", err.response?.data);
+      console.log("Error ", err.response?.data);
       alert(err.response?.data?.message || "Something went wrong");
     }
   };
