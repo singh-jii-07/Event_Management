@@ -8,16 +8,23 @@ function Profile() {
     try {
       const token = localStorage.getItem("token");
 
-      const ref = await axios.get(
-        "http://localhost:5050/api/user/profile",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-     console.log(ref.data)
-      setUser(ref.data.user); 
+      const ref = await axios.get("http://localhost:5050/api/user/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(ref.data);
+      setUser(ref.data.user);
+    } catch (err) {
+      console.log("Error ", err.response?.data);
+      alert(err.response?.data?.message || "Something went wrong");
+    }
+  };
+  const logoutHandel = async () => {
+    try {
+      localStorage.removeItem("token");
+      await axios.post("http://localhost:5050/api/user/logout");
+      window.location.href = "/login";
     } catch (err) {
       console.log("Error ", err.response?.data);
       alert(err.response?.data?.message || "Something went wrong");
@@ -28,7 +35,6 @@ function Profile() {
     fetchProfile();
   }, []);
 
- 
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -40,7 +46,6 @@ function Profile() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-
         {/* Profile Image */}
         <div className="flex justify-center mb-6">
           <img
@@ -75,10 +80,7 @@ function Profile() {
 
         <button
           className="w-full mt-8 bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600 transition"
-          onClick={() => {
-            localStorage.removeItem("token");
-            window.location.href = "/login";
-          }}
+          onClick={logoutHandel}
         >
           Logout
         </button>
