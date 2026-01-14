@@ -27,7 +27,7 @@ function Allevent() {
              hover:border-blue-500 
              shadow-md hover:shadow-xl transition duration-300"
         >
-          {/* Image */}
+         
           <div className="relative h-48 overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2"
@@ -35,7 +35,7 @@ function Allevent() {
               className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
             />
 
-            {/* Gradient Overlay */}
+            
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
             {/* Badge */}
