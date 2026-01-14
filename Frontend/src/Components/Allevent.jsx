@@ -38,12 +38,12 @@ function Allevent() {
             
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
-            {/* Badge */}
+           
             <span className="absolute top-3 left-3 bg-red-500 text-white text-xs px-3 py-1 rounded-full">
               Early Bird
             </span>
 
-            {/* Date */}
+            
             <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-md rounded-xl px-3 py-2 text-center shadow">
               <p className="text-sm font-bold">
                 {event.date}
@@ -51,7 +51,7 @@ function Allevent() {
             </div>
           </div>
 
-          {/* Content */}
+          
           <div className="p-5 space-y-3">
             <h3 className="text-lg font-bold text-gray-900 line-clamp-1">
               {event.title}
