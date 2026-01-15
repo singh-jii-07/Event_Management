@@ -30,7 +30,7 @@ const create = async (req, res) => {
     });
   }
 };
-
+    
 const getevent = async (req, res) => {
   try {
     const event = await Event.find();
