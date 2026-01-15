@@ -14,7 +14,7 @@ function Signup() {
         data
       );
 
-      console.log(data);
+      console.log(data);   
       console.log(ref);
       setData({ name: "", email: "", password: "" });
     } catch (err) {
