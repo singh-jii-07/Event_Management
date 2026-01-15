@@ -14,7 +14,7 @@ function Allevent() {
   };
 
   useEffect(() => {
-    fetchEvent();
+    fetchEvent();    
   }, []);
 
   return (
@@ -72,7 +72,7 @@ function Allevent() {
             </p>
 
             <button className="w-full mt-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 rounded-xl font-semibold hover:from-indigo-600 hover:to-blue-600 transition">
-              Register Now
+              More details
             </button>
           </div>
         </div>
