@@ -18,7 +18,7 @@ function Login() {
           email: "",
           password: "",
         });
-    }
+    }     
     catch (err) {
       console.log("Error ", err.response?.data);
       alert(err.response?.data?.message || "Something went wrong");
