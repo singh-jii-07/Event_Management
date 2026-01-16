@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 function Signup() {
+  const navigate=useNavigate()
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -76,6 +78,7 @@ function Signup() {
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+            onClick={()=>navigate("/login")}
           >
             Sign Up
           </button>
@@ -83,7 +86,7 @@ function Signup() {
 
         <p className="text-center text-sm text-gray-600 mt-6">
           Already have an account?{" "}
-          <span className="text-blue-600 cursor-pointer hover:underline">
+          <span className="text-blue-600 cursor-pointer hover:underline" onClick={()=>navigate("/login")}>
             Login
           </span>
         </p>
