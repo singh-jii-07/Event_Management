@@ -1,26 +1,37 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 function Login() {
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-        const ref = await axios.post("http://localhost:5050/api/user/login",form)
-        console.log(form);
-        console.log(ref);
-        localStorage.setItem("token", ref.data.token);
 
-        
-        setForm({
-          email: "",
-          password: "",
-        });
-    }     
-    catch (err) {
-      console.log("Error ", err.response?.data);
+    try {
+      const ref = await axios.post(
+        "http://localhost:5050/api/user/login",
+        form
+      );
+
+      // Save token
+      localStorage.setItem("token", ref.data.token);
+
+      // Clear form
+      setForm({
+        email: "",
+        password: "",
+      });
+
+      // 👉 Redirect to profile
+      navigate("/profile");
+    } catch (err) {
+      console.log("Error 👉", err.response?.data);
       alert(err.response?.data?.message || "Something went wrong");
     }
   };
@@ -39,10 +50,12 @@ function Login() {
             </label>
             <input
               type="email"
-              placeholder="Enter your email"
               name="email"
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, email: e.target.value })
+              }
+              placeholder="Enter your email"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -55,7 +68,9 @@ function Login() {
               type="password"
               name="password"
               value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, password: e.target.value })
+              }
               placeholder="Enter your password"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -71,7 +86,10 @@ function Login() {
 
         <p className="text-center text-sm text-gray-600 mt-6">
           Don’t have an account?{" "}
-          <span className="text-blue-600 cursor-pointer hover:underline">
+          <span
+            onClick={() => navigate("/signup")}
+            className="text-blue-600 cursor-pointer hover:underline"
+          >
             Register
           </span>
         </p>
