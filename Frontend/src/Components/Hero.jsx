@@ -38,7 +38,7 @@ function HeroSection() {
           </button>
 
           <button
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/allevent")}
             className="border border-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-blue-700 transition"
           >
             Get Started
