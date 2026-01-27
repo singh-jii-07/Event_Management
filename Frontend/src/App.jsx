@@ -10,6 +10,7 @@ import CreateEvent from "./Components/CreateEvent";
 import EditEvent from "./Components/EditEvent";
 import Events from "./pages/Events";
 import Footer from "./Components/Footer";
+import ProfilePage from "./pages/ProfilePage";
 
 function Layout() {
   const location = useLocation();
@@ -40,6 +41,7 @@ function App() {
         { path: "allevent", element: <Allevent /> },
         { path: "event/:id", element: <EventDetails /> },
         { path: "create", element: <CreateEvent /> },
+        { path: "profilepage", element: <ProfilePage/> },
         { path: "edit/:id", element: <EditEvent /> },
       ],
     },

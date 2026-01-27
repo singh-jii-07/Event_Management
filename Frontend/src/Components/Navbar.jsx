@@ -41,7 +41,7 @@ function Navbar() {
         {token ? (
           <>
             <NavLink
-              to="/profile"
+              to="/profilepage"
               className={({ isActive }) =>
                 isActive ? "text-blue-600" : "hover:text-blue-600"
               }
