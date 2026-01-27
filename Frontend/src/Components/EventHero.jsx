@@ -1,16 +1,17 @@
-import React from 'react'
+import React from "react";
 
 function EventHero() {
   return (
-    <div className='h-96 w-full bg-slate-600 flex flex-col justify-center items-center'>
-<h2 className='text-white font-semibold  text-[100px]'>
-    All Events
-</h2>
-<span className='text-white text-lg'>
-    Here The all Events
-</span>
+    <div className="h-64 sm:h-80 md:h-96 w-full bg-slate-700 flex flex-col justify-center items-center text-center px-4">
+      <h2 className="text-white font-bold text-4xl sm:text-5xl md:text-7xl lg:text-[100px]">
+        All Events
+      </h2>
+
+      <span className="text-white text-sm sm:text-base md:text-lg mt-2">
+        Here are all the events
+      </span>
     </div>
-  )
+  );
 }
 
-export default EventHero
+export default EventHero;
