@@ -14,65 +14,46 @@ function Allevent() {
   };
 
   useEffect(() => {
-    fetchEvent();    
+    fetchEvent();
   }, []);
 
   return (
-    <div className="flex flex-wrap gap-8 justify-center">
+    <div className="max-w-5xl mx-auto p-6 space-y-4">
+      <h2 className="text-2xl font-bold mb-4 text-center">All Events</h2>
+
       {data.map((event) => (
         <div
           key={event._id}
-          className="group w-80 rounded-2xl overflow-hidden 
-             bg-white border border-blue-200 
-             hover:border-blue-500 
-             shadow-md hover:shadow-xl transition duration-300"
+          className="flex bg-white rounded-xl shadow-md hover:shadow-lg transition overflow-hidden"
         >
-         
-          <div className="relative h-48 overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2"
-              alt="Event"
-              className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-            />
+          {/* Image */}
+          <img
+            src="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2"
+            alt="event"
+            className="w-40 h-32 object-cover"
+          />
 
-            
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-
-           
-            <span className="absolute top-3 left-3 bg-red-500 text-white text-xs px-3 py-1 rounded-full">
-              Early Bird
-            </span>
-
-            
-            <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-md rounded-xl px-3 py-2 text-center shadow">
-              <p className="text-sm font-bold">
-                {event.date}
-              </p>
-            </div>
-          </div>
-
-          
-          <div className="p-5 space-y-3">
-            <h3 className="text-lg font-bold text-gray-900 line-clamp-1">
+          {/* Content */}
+          <div className="flex-1 p-4">
+            <h3 className="text-lg font-semibold text-gray-900">
               {event.title}
             </h3>
-
-            <div className="flex items-center text-sm text-gray-500 gap-2">
-              <span>🕒</span>
-              <span>{event.time}</span>
-            </div>
-
-            <div className="flex items-center text-sm text-gray-500 gap-2">
-              <span>📍</span>
-              <span className="line-clamp-1">{event.location}</span>
-            </div>
 
             <p className="text-sm text-gray-600 line-clamp-2">
               {event.description}
             </p>
 
-            <button className="w-full mt-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 rounded-xl font-semibold hover:from-indigo-600 hover:to-blue-600 transition">
-              More details
+            <div className="flex items-center gap-4 text-sm text-gray-500 mt-2">
+              <span>🕒 {event.time}</span>
+              <span>📍 {event.location}</span>
+              <span>📅 {new Date(event.date).toDateString()}</span>
+            </div>
+          </div>
+
+          {/* Button */}
+          <div className="flex items-center px-4">
+            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+              Buy Tickets
             </button>
           </div>
         </div>
