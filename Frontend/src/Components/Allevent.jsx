@@ -3,6 +3,27 @@ import React, { useEffect, useState } from "react";
 
 function Allevent() {
   const [data, setData] = useState([]);
+  const handelbook = async (eventid) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const res = await axios.post(
+      "http://localhost:5050/api/booking/book",
+      { eventid }, 
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      }
+    );
+
+    alert("Event booked successfully");
+    console.log(res.data);
+  } catch (err) {
+    console.log("Error 👉", err.response?.data);
+    alert(err.response?.data?.message || "Booking failed");
+  }
+};
 
   const fetchEvent = async () => {
     try {
@@ -52,7 +73,10 @@ function Allevent() {
 
           {/* Button */}
           <div className="flex items-center px-4">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            <button
+              onClick={() => handelbook(event._id)}
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            >
               Buy Tickets
             </button>
           </div>
