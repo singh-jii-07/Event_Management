@@ -44,7 +44,7 @@ function Booking() {
 
       alert(res.data.message);
 
-      // UI update without refresh
+     
       setBookings((prev) =>
         prev.map((b) =>
           b._id === bookingId ? { ...b, status: "cancelled" } : b

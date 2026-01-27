@@ -31,22 +31,24 @@ const createBookinng =async (req,res)=>{
     }
 }
 
-const getbook =async (req, res)=>{
-  try{
-  const event =  await Booking.find()
-  res.status(200).json({
-    message:"All Booking",
-    event
-  })
+const getbook = async (req, res) => {
+  try {
+    const bookings = await Booking.find()
+      .populate("event")
+      .populate("user");
+
+    res.status(200).json({
+      message: "All Booking",
+      bookings, // 👈 same name frontend ke liye
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "internal server Error",
+      error: err.message,
+    });
   }
-   catch(err){
-        res.status(500).json({
-            message:"internal server Error",
-            error: err.message,
-        })
-    
-    }
-}
+};
+
 
 const deleteBooking = async (req, res) =>{
   try{
