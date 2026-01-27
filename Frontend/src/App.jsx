@@ -9,6 +9,7 @@ import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import CreateEvent from "./Components/CreateEvent";
 import EditEvent from "./Components/EditEvent";
+import Events from "./pages/Events";
 
 function App() {
   
@@ -27,6 +28,10 @@ function App() {
         {
           index: true,
           element: <Home />,
+        },
+        {
+          path: "event",
+          element: <Events/>,
         },
         {
           path: "login",

@@ -29,6 +29,14 @@ function Navbar() {
         >
           Home
         </NavLink>
+         <NavLink
+              to="/event"
+              className={({ isActive }) =>
+                isActive ? "text-blue-600" : "hover:text-blue-600"
+              }
+            >
+              Events
+            </NavLink>
 
         {token ? (
           <>
@@ -50,6 +58,7 @@ function Navbar() {
           </>
         ) : (
           <>
+           
             <NavLink
               to="/login"
               className={({ isActive }) =>
