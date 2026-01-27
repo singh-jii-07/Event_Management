@@ -75,13 +75,9 @@ function Newevents() {
                 <span className="line-clamp-1">{event.location}</span>
               </div>
 
-              <p className="text-sm text-gray-600 line-clamp-2">
-                {event.description}
-              </p>
-
-              {/* 👇 Navigate to ALL EVENTS page */}
+              {/* 👇 Navigate to EVENT DETAILS page */}
               <button
-                onClick={() => navigate("/")}
+                onClick={() => navigate(`/event/${event._id}`)}
                 className="w-full mt-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 rounded-xl font-semibold hover:from-indigo-600 hover:to-blue-600 transition"
               >
                 More Details

@@ -23,6 +23,7 @@ function Profile() {
   const logoutHandel = async () => {
     try {
       localStorage.removeItem("token");
+      // localStorage.removeItem("role");
       await axios.post("http://localhost:5050/api/user/logout");
       window.location.href = "/login";
     } catch (err) {

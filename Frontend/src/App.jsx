@@ -3,12 +3,12 @@ import Login from "./Components/Login";
 import Profile from "./Components/Profile";
 import Signup from "./Components/Signup";
 import Navbar from "./Components/Navbar";
+import EventDetails from "./Components/EventDetails";
 
 import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 
 function App() {
-
   // 👇 Inline Layout (Navbar + Outlet)
   const Layout = () => (
     <>
@@ -20,11 +20,11 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,  
+      element: <Layout />,
       children: [
         {
           index: true,
-          element: <Home/>,
+          element: <Home />,
         },
         {
           path: "login",
@@ -40,7 +40,11 @@ function App() {
         },
         {
           path: "allevent",
-          element: <Allevent/>,
+          element: <Allevent />,
+        },
+        {
+          path: "event/:id",
+          element: <EventDetails/>,
         },
       ],
     },

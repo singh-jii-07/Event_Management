@@ -71,12 +71,18 @@ const login = async (req, res) => {
     const token = jwt.sign(
       { id: checkuser._id, role: checkuser.role },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "1d" },
     );
 
     return res.status(200).json({
       message: "User login successful",
       token,
+      user: {
+        _id: checkuser._id,
+        email: checkuser.email,
+        role: checkuser.role,
+        name: checkuser.name,
+      },
     });
   } catch (err) {
     console.error("Login Error", err);
@@ -120,4 +126,4 @@ const profile = async (req, res) => {
   }
 };
 
-export { register, login, logout , profile };
+export { register, login, logout, profile };
