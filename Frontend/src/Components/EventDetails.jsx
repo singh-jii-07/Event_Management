@@ -86,7 +86,7 @@ function EventDetails() {
             {role === "admin" && (
               <>
                 <button
-                  onClick={() => navigate(`/edit-event/${event._id}`)}
+                  onClick={() => navigate(`/edit/${event._id}`)}
                   className="px-6 py-2 bg-green-600 rounded-lg hover:bg-green-700"
                 >
                   Edit

@@ -8,6 +8,7 @@ import EventDetails from "./Components/EventDetails";
 import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import CreateEvent from "./Components/CreateEvent";
+import EditEvent from "./Components/EditEvent";
 
 function App() {
   
@@ -50,6 +51,10 @@ function App() {
         {
           path:"create",
           element:<CreateEvent/>
+        },
+        {
+          path:"edit/:id",
+          element:<EditEvent/>
         },
       ],
     },
