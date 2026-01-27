@@ -5,6 +5,7 @@ import Signup from "./Components/Signup";
 import Navbar from "./Components/Navbar";
 
 import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
       children: [
         {
           index: true,
-          element: <Allevent />,
+          element: <Home/>,
         },
         {
           path: "login",
@@ -36,6 +37,10 @@ function App() {
         {
           path: "profile",
           element: <Profile />,
+        },
+        {
+          path: "allevent",
+          element: <Allevent/>,
         },
       ],
     },

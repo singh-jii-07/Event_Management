@@ -26,7 +26,7 @@ function Navbar() {
             isActive ? "text-blue-600" : "hover:text-blue-600"
           }
         >
-          Events
+          Home
         </NavLink>
 
         {token ? (
