@@ -7,9 +7,10 @@ import EventDetails from "./Components/EventDetails";
 
 import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
+import CreateEvent from "./Components/CreateEvent";
 
 function App() {
-  // 👇 Inline Layout (Navbar + Outlet)
+  
   const Layout = () => (
     <>
       <Navbar />
@@ -45,6 +46,10 @@ function App() {
         {
           path: "event/:id",
           element: <EventDetails/>,
+        },
+        {
+          path:"create",
+          element:<CreateEvent/>
         },
       ],
     },
