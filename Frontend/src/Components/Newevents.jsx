@@ -4,19 +4,35 @@ import { useNavigate } from "react-router-dom";
 
 function Newevents() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
 
   const fetchEvent = async () => {
     try {
-      const ref = await axios.get("http://localhost:5050/api/event/get");
+      setLoading(true);
 
-      // latest first
-      const sortedEvents = ref.data.event.reverse();
+      const ref = await axios.get(
+        "http://localhost:5050/api/event/get"
+      );
 
-      // show only 4
+      // latest events first
+      const sortedEvents = [...ref.data.event].reverse();
+
+      // only 4 events
       setData(sortedEvents.slice(0, 4));
     } catch (err) {
-      console.log("Error 👉", err.response?.data);
+      console.log("FULL ERROR 👉", err);
+
+      if (err.response) {
+        console.log("Backend Error:", err.response.data);
+      } else if (err.request) {
+        console.log("No Response From Server");
+      } else {
+        console.log("Axios Error:", err.message);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -24,10 +40,19 @@ function Newevents() {
     fetchEvent();
   }, []);
 
+  // Loading UI
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-7xl mx-auto py-12">
+    <div className="max-w-7xl mx-auto py-12 px-4">
       {/* Section Title */}
-      <h2 className="text-3xl font-bold text-center mb-10">
+      <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">
         Latest Events
       </h2>
 
@@ -36,9 +61,10 @@ function Newevents() {
           <div
             key={event._id}
             className="group w-80 rounded-2xl overflow-hidden 
-             bg-white border border-blue-200 
-             hover:border-blue-500 
-             shadow-md hover:shadow-xl transition duration-300"
+            bg-white border border-blue-200 
+            hover:border-blue-500 
+            shadow-md hover:shadow-2xl 
+            transition duration-300"
           >
             {/* Image */}
             <div className="relative h-48 overflow-hidden">
@@ -55,7 +81,9 @@ function Newevents() {
               </span>
 
               <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-md rounded-xl px-3 py-2 text-center shadow">
-                <p className="text-sm font-bold">{event.date}</p>
+                <p className="text-sm font-bold">
+                  {new Date(event.date).toDateString()}
+                </p>
               </div>
             </div>
 
@@ -64,6 +92,10 @@ function Newevents() {
               <h3 className="text-lg font-bold text-gray-900 line-clamp-1">
                 {event.title}
               </h3>
+
+              <p className="text-sm text-gray-600 line-clamp-2">
+                {event.description}
+              </p>
 
               <div className="flex items-center text-sm text-gray-500 gap-2">
                 <span>🕒</span>
@@ -75,7 +107,7 @@ function Newevents() {
                 <span className="line-clamp-1">{event.location}</span>
               </div>
 
-              {/* 👇 Navigate to EVENT DETAILS page */}
+              {/* Navigate */}
               <button
                 onClick={() => navigate(`/event/${event._id}`)}
                 className="w-full mt-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 rounded-xl font-semibold hover:from-indigo-600 hover:to-blue-600 transition"
