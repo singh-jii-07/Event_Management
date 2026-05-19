@@ -12,6 +12,7 @@ import Events from "./pages/Events";
 import Footer from "./Components/Footer";
 import ProfilePage from "./pages/ProfilePage";
 import AboutPage from "./pages/AboutPage";
+import AdminDashboard from "./pages/AdminDashboard";
 import ScrollToTop from "./Components/ScrollToTop";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -90,6 +91,8 @@ function App() {
         { path: "about", element: <AboutPage /> },
       ],
     },
+    // Admin dashboard — full-screen, no shared Navbar/Footer
+    { path: "/admin", element: <AdminDashboard /> },
   ]);
 
   return <RouterProvider router={router} />;

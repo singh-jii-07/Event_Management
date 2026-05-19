@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FiMenu, FiX, FiHome, FiCalendar, FiUser, FiLogOut,
-  FiLogIn, FiUserPlus, FiInfo, FiChevronDown, FiZap, FiPlusCircle
+  FiLogIn, FiUserPlus, FiInfo, FiChevronDown, FiZap, FiPlusCircle, FiGrid
 } from "react-icons/fi";
 
 const navLinks = [
@@ -194,6 +194,15 @@ function Navbar() {
                             <FiUser className="text-purple-400" />
                             My Profile
                           </Link>
+                          {role === "admin" && (
+                            <Link
+                              to="/admin"
+                              className="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-all"
+                            >
+                              <FiGrid className="text-cyan-400" />
+                              Admin Dashboard
+                            </Link>
+                          )}
                           <div className="h-px bg-slate-700/50" />
                           <button
                             onClick={logoutHandler}
@@ -321,6 +330,16 @@ function Navbar() {
                     >
                       <FiUser />
                       My Profile
+                    </Link>
+                  )}
+                  {token && role === "admin" && (
+                    <Link
+                      to="/admin"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-cyan-400 hover:text-white hover:bg-cyan-500/10 transition-all"
+                    >
+                      <FiGrid />
+                      Admin Dashboard
                     </Link>
                   )}
                 </div>
