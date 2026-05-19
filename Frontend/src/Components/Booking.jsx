@@ -17,8 +17,8 @@ function Booking() {
   const fetchBookings = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5050/api/booking/getbook", { headers: { Authorization: `Bearer ${token}` } });
-      setBookings(res.data.bookings);
+      const res = await axios.get("http://localhost:5050/api/booking/getMyBookings", { headers: { Authorization: `Bearer ${token}` } });
+      setBookings(res.data);
     } catch (err) {
       console.log("Error 👉", err.response?.data);
     } finally {
